@@ -11,7 +11,7 @@ AutoTagMate is a Sublime Text plugin designed to automatically generate closing 
   - The plugin operates in untitled files and files with extensions specified in the settings. By default, it works in `.txt` files and untitled documents.
 
 - **Easy Configuration:**  
-  - Adjust the list of allowed file extensions and toggle the functionality for untitled files via the `auto_tag.sublime-settings` file.
+  - Adjust the list of allowed file extensions and toggle the functionality for untitled files via the `auto_tag_mate.sublime-settings` file.
 
 ## Installation
 
@@ -24,8 +24,8 @@ AutoTagMate is a Sublime Text plugin designed to automatically generate closing 
    - Open Sublime Text.
    - Go to **Preferences → Browse Packages…** to open the packages folder.
    - Place the following files in the **User** folder:
-     - `auto_tag.py` – the main plugin code.
-     - `auto_tag.sublime-settings` – the settings file.
+     - `auto_tag_mate.py` – the main plugin code.
+     - `auto_tag_mate.sublime-settings` – the settings file.
 
 3. **Reload Sublime Text:**  
    Restart Sublime Text or use **Tools → Developer → Reload Plugins** to activate the plugin.
@@ -36,7 +36,7 @@ Once the plugin is published through Package Control, simply open the Command Pa
 
 ## Configuration
 
-The plugin’s behavior is controlled via the `auto_tag.sublime-settings` file. A sample configuration is provided below:
+The plugin’s behavior is controlled via the `auto_tag_mate.sublime-settings` file. A sample configuration is provided below:
 
 ```json
 {
