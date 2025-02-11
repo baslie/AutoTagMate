@@ -5,8 +5,8 @@ AutoTagMate is a Sublime Text plugin designed to automatically generate closing 
 ## Features
 
 - **Automatic Tag Completion:**  
-  - Type a plain text word (e.g., `Transcription`) or a phrase with spaces (e.g., `Transcription with timecodes`) and press the activation key (default is **Tab**) to automatically wrap the text in matching opening and closing tags. For example, the phrase will be converted into `<Transcription with timecodes></Transcription with timecodes>`, with the cursor positioned between the tags.
-  - When you type an opening tag (e.g., `<Transcription`) and finish it with `>`, the corresponding closing tag is auto-inserted.
+  - Type a plain text word (e.g., `Text`) or a phrase with spaces (e.g., `Some extra text`) and press the activation key (default is **Tab**) to automatically wrap the text in matching opening and closing tags. For example, the phrase will be converted into `<Some extra text></Some extra text>`, with the cursor positioned between the tags.
+  - When you type an opening tag (e.g., `<Text`) and finish it with `>`, the corresponding closing tag is auto-inserted.
 
 - **Customizable Scope:**  
   - The plugin operates in untitled files and files with extensions specified in the settings. By default, it works in `.txt` files and untitled documents.
@@ -61,7 +61,7 @@ Feel free to modify these settings to match your workflow.
 ## Usage
 
 - **Using the Activation Key:**  
-  When editing an eligible file, type a plain text word (e.g., `ExampleTag`) or a multi-word phrase (e.g., `Transcription with timecodes`) and press the activation key (default is **Tab**). AutoTagMate will wrap the text with matching opening and closing tags, placing the cursor between them.
+  When editing an eligible file, type a plain text word (e.g., `ExampleTag`) or a multi-word phrase (e.g., `Some extra text`) and press the activation key (default is **Tab**). AutoTagMate will wrap the text with matching opening and closing tags, placing the cursor between them.
   
 - **Automatic Tag Closure on '>':**  
   If you type an opening tag (e.g., `<ExampleTag`) and finish it with `>`, the plugin automatically inserts the corresponding closing tag and positions the cursor appropriately.
