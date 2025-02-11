@@ -28,7 +28,7 @@ AutoTagMate is a Sublime Text plugin designed to automatically generate closing 
      - `auto_tag_mate.sublime-settings` – the settings file.
 
 3. **Reload Sublime Text:**  
-   Restart Sublime Text or use **Tools → Developer → Reload Plugins** to activate the plugin.
+   Restart Sublime Text to activate the plugin.
 
 ### Installation via Package Control
 
