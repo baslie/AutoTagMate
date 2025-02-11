@@ -1,0 +1,9 @@
+[
+    {
+        "keys": ["tab"],
+        "command": "insert_auto_tag",
+        "context": [
+            { "key": "selector", "operator": "equal", "operand": "text.plain" }
+        ]
+    }
+]
