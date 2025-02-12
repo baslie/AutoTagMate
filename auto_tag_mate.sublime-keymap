@@ -3,7 +3,10 @@
         "keys": ["tab"],
         "command": "insert_auto_tag",
         "context": [
-            { "key": "selector", "operator": "equal", "operand": "text.plain" }
+            { "key": "selector", "operator": "equal", "operand": "text.plain" },
+            { "key": "auto_complete_visible", "operator": "equal", "operand": false },
+            { "key": "has_next_field", "operator": "equal", "operand": false },
+            { "key": "setting.tab_completion", "operator": "equal", "operand": true }
         ]
     }
 ]
