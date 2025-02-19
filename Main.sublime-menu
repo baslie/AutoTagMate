@@ -1,0 +1,11 @@
+[
+    {
+        "id": "preferences",
+        "children": [
+            {
+                "caption": "AutoTagMate",
+                "command": "open_auto_tag_mate_settings"
+            }
+        ]
+    }
+]

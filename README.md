@@ -1,16 +1,17 @@
 # AutoTagMate
 
-A lightweight Sublime Text plugin that automatically generates XML-style closing tags with smart cursor positioning. Perfect for quick text wrapping and tag completion.
+AutoTagMate is a lightweight Sublime Text plugin that automatically generates XML-style closing tags with smart cursor positioning. It's perfect for quickly wrapping text in tags and auto-completing tag pairs.
 
 ---
 
 ## Features
 
-- Convert words or phrases into tags using Tab
-- Auto-close tags when typing '>'
-- Works with both single words and multi-word phrases
-- Smart cursor positioning
-- Configurable file type support
+- Convert words or phrases into tags using a hotkey (default: `Tab`)
+- Auto-insert closing tags when typing `>`
+- Support for both single-word and multi-word phrases
+- Smart cursor positioning inside the generated tag pair
+- Configurable file type support via `allowed_selectors`
+- Ability to customize the hotkey through Sublime Text key bindings
 
 ---
 
@@ -18,66 +19,99 @@ A lightweight Sublime Text plugin that automatically generates XML-style closing
 
 ### Via Package Control
 
-1. Open Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
-2. Select `Package Control: Install Package`
-3. Search for `AutoTagMate`
+1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
+2. Choose **Package Control: Install Package**
+3. Search for **AutoTagMate** and install it
 
 ### Manual Installation
 
 1. Download the repository
-2. Place files in your Sublime Text Packages/User folder
+2. Place the files in your Sublime Text `Packages/User` directory
 3. Restart Sublime Text
 
 ---
 
 ## Usage
 
-### Basic Tag Creation
-1. Type a word: `Header`
-2. Press `Tab`
-3. Result: `<Header></Header>` (cursor in between)
+### Creating a Tag
 
-### Multi-word Tags
-1. Type a phrase: `Main Content`
-2. Press `Tab`
+1. Type a word (e.g., `Header`)
+2. Press the hotkey (default: `Tab`)
+3. Result: `<Header></Header>` with the cursor positioned between the tags
+
+### Creating a Tag from a Multi-word Phrase
+
+1. Type a phrase (e.g., `Main Content`)
+2. Press the hotkey
 3. Result: `<Main Content></Main Content>`
 
-### Auto-closing
-1. Type: `<Header>`
-2. Result: `<Header></Header>`
+### Auto-closing Tags
+
+1. Type an opening tag (e.g., `<Header>`)
+2. The plugin automatically adds the corresponding closing tag: `<Header></Header>`
 
 ---
 
 ## Configuration
 
-Settings file (`auto_tag_mate.sublime-settings`):
+The plugin settings are stored in the **auto_tag_mate.sublime-settings** file:
+
 ```json
 {
-    "allowed_extensions": [".txt"],
+    "allowed_selectors": ["text.plain"],
     "allow_untitled": true
 }
 ```
 
+- **allowed_selectors**: A list of CSS selectors that define in which file types the plugin is active (default: `["text.plain"]`).
+- **allow_untitled**: If set to `true`, the plugin will work in unsaved (untitled) files.
+
 ---
 
-## Key Bindings
+## Hotkeys
 
-Default: `Tab`
+### Default Assignment
 
-To customize, add to your key bindings file:
+By default, the plugin uses the `Tab` key to trigger the `insert_auto_tag` command.
 
-```json
-{
-    "keys": ["your_key_combo"],
-    "command": "insert_auto_tag",
-    "context": [
-        { "key": "selector", "operator": "equal", "operand": "text.plain" }
+### Changing the Hotkey
+
+If you wish to change the default hotkey (for example, to `Ctrl+~`), follow these steps:
+
+1. Open **Preferences → Key Bindings**.
+2. In the user key bindings file (the right-hand side file), add the following block:
+
+    ```json
+    [
+        {
+            "keys": ["ctrl+~"],
+            "command": "insert_auto_tag",
+            "context": [
+                { "key": "selector", "operator": "equal", "operand": "text.plain" }
+            ]
+        }
     ]
-}
-```
+    ```
+
+3. Save the file — the new key binding will take effect immediately.
+
+> **Note:** If the `Tab` key is already bound to this command, you may need to remove or override that binding in your user key bindings.
+
+---
+
+## Additional Commands
+
+- **Open Plugin Settings:**  
+  You can open the plugin settings via the `open_auto_tag_mate_settings` command available in the Command Palette.
 
 ---
 
 ## Support and Contact
 
-For any questions, feature requests, or technical support, please reach out using the contact information available at [roman-purtow.ru](https://roman-purtow.ru).
+For questions, feature requests, or technical support, please visit [roman-purtow.ru](https://roman-purtow.ru).
+
+---
+
+## License
+
+This project is licensed under the terms specified in the [LICENSE](LICENSE) file.
