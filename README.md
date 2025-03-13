@@ -1,17 +1,47 @@
-# AutoTagMate
+# AutoTagMate: Your Essential AI Prompt Structuring Tool
 
-AutoTagMate is a lightweight Sublime Text plugin that automatically generates XML-style closing tags with smart cursor positioning. It's perfect for quickly wrapping text in tags and auto-completing tag pairs.
+Want to level up your prompts for ChatGPT, Claude AI, or any other neural network-based system? **AutoTagMate** is a lightweight Sublime Text plugin that helps you quickly wrap text in XML-style tags—enhancing clarity and focus for your AI queries. It’s also perfect for developers, content creators, or anyone who frequently needs to wrap text in tags.
 
 ---
 
-## Features
+## Why It’s Perfect for AI Work
 
-- Convert words or phrases into tags using a hotkey (default: `Tab`)
-- Auto-insert closing tags when typing `>`
-- Support for both single-word and multi-word phrases
-- Smart cursor positioning inside the generated tag pair
-- Configurable file type support via `allowed_selectors`
-- Ability to customize the hotkey through Sublime Text key bindings
+- **Boost Prompt Clarity**  
+  Clearly separate instruction sections, examples, or code snippets in your AI prompts by automatically wrapping text in tags—making it easier for the model to understand your intent.
+
+- **Zero Hassle**  
+  Set a hotkey (default: `Tab`) to instantly wrap your text in a tag pair, or rely on auto-insertion of the closing tag after typing `>`.
+
+- **Excluded Files/Selectors**  
+  Configure file type support via `allowed_selectors` so that the plugin only works where you want it to.
+
+---
+
+## Also Great for HTML Wrapping
+
+While AutoTagMate is ideal for structuring AI prompts, it’s still a powerful companion for developers and content creators who need to wrap text in HTML tags. Whether you’re editing a website or adding simple markup, AutoTagMate has you covered.
+
+---
+
+## Key Features
+
+- **Instant Tag Wrapping**  
+  Automatically wraps a selected word or phrase in `<tag></tag>` with a single hotkey press.
+
+- **Auto-insert Closing Tags**  
+  Type an opening tag (e.g., `<Header>`), and the plugin automatically adds the corresponding closing tag.
+
+- **Smart Cursor Positioning**  
+  After wrapping text, the cursor is placed between the opening and closing tags for seamless editing.
+
+- **Customizable Hotkey**  
+  Default is `Tab`, but you can easily change it to another key (e.g., `Ctrl+~`).
+
+- **Configurable File Types**  
+  Control in which file types the plugin is active via the `allowed_selectors` setting.
+
+- **Works on Unsaved Files**  
+  Enable or disable tag insertion in unsaved (untitled) files through the `allow_untitled` setting.
 
 ---
 
@@ -19,15 +49,15 @@ AutoTagMate is a lightweight Sublime Text plugin that automatically generates XM
 
 ### Via Package Control
 
-1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
-2. Choose **Package Control: Install Package**
-3. Search for **AutoTagMate** and install it
+1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`).
+2. Choose **Package Control: Install Package**.
+3. Search for **AutoTagMate** and install it.
 
 ### Manual Installation
 
-1. Download the repository
-2. Place the files in your Sublime Text `Packages/User` directory
-3. Restart Sublime Text
+1. [Download the repository](https://packagecontrol.io/packages/AutoTagMate) or clone it.
+2. Place the files in your Sublime Text `Packages/User` directory.
+3. Restart Sublime Text.
 
 ---
 
@@ -35,26 +65,20 @@ AutoTagMate is a lightweight Sublime Text plugin that automatically generates XM
 
 ### Creating a Tag
 
-1. Type a word (e.g., `Header`)
-2. Press the hotkey (default: `Tab`)
-3. Result: `<Header></Header>` with the cursor positioned between the tags
-
-### Creating a Tag from a Multi-word Phrase
-
-1. Type a phrase (e.g., `Main Content`)
-2. Press the hotkey
-3. Result: `<Main Content></Main Content>`
+1. Type a word or phrase (e.g., `Header` or `Main Content`).
+2. Press the hotkey (`Tab` by default).
+3. AutoTagMate wraps it: `<Header></Header>` or `<Main Content></Main Content>`.
 
 ### Auto-closing Tags
 
-1. Type an opening tag (e.g., `<Header>`)
-2. The plugin automatically adds the corresponding closing tag: `<Header></Header>`
+- Start typing an opening tag, like `<Header>`.
+- AutoTagMate automatically inserts `</Header>`.
 
 ---
 
 ## Configuration
 
-The plugin settings are stored in the **auto_tag_mate.sublime-settings** file:
+AutoTagMate settings are stored in the **auto_tag_mate.sublime-settings** file:
 
 ```json
 {
@@ -63,8 +87,8 @@ The plugin settings are stored in the **auto_tag_mate.sublime-settings** file:
 }
 ```
 
-- **allowed_selectors**: A list of CSS selectors that define in which file types the plugin is active (default: `["text.plain"]`).
-- **allow_untitled**: If set to `true`, the plugin will work in unsaved (untitled) files.
+- **allowed_selectors**: A list of CSS selectors that define the file types where the plugin is active.  
+- **allow_untitled**: If `true`, AutoTagMate works in unsaved (untitled) files as well.
 
 ---
 
@@ -72,14 +96,12 @@ The plugin settings are stored in the **auto_tag_mate.sublime-settings** file:
 
 ### Default Assignment
 
-By default, the plugin uses the `Tab` key to trigger the `insert_auto_tag` command.
+By default, `Tab` is used to trigger the `insert_auto_tag` command.
 
 ### Changing the Hotkey
 
-If you wish to change the default hotkey (for example, to `Ctrl+~`), follow these steps:
-
 1. Open **Preferences → Key Bindings**.
-2. In the user key bindings file (the right-hand side file), add the following block:
+2. In the user key bindings file (the right-hand side), add:
 
     ```json
     [
@@ -92,17 +114,15 @@ If you wish to change the default hotkey (for example, to `Ctrl+~`), follow thes
         }
     ]
     ```
+3. Save the file. Your new key binding will take effect immediately.
 
-3. Save the file — the new key binding will take effect immediately.
-
-> **Note:** If the `Tab` key is already bound to this command, you may need to remove or override that binding in your user key bindings.
+*(If the `Tab` key is already bound to this command, you can remove or override it in your user key bindings.)*
 
 ---
 
 ## Additional Commands
 
-- **Open Plugin Settings:**  
-  You can open the plugin settings via the `open_auto_tag_mate_settings` command available in the Command Palette.
+- **Open Plugin Settings**: Launch via the `open_auto_tag_mate_settings` command in the Command Palette.
 
 ---
 
