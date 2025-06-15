@@ -1,4 +1,5 @@
 {
-    "allowed_selectors": ["text.plain"],
+    "allow_all_files": true,
+    "allowed_selectors": [],
     "allow_untitled": true
 }

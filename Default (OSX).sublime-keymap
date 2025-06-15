@@ -1,0 +1,6 @@
+[
+    {
+        "keys": ["cmd+\\"],
+        "command": "insert_auto_tag"
+    }
+]

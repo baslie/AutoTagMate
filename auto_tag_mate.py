@@ -11,14 +11,23 @@ def load_settings():
 def is_valid_view(view):
     """
     Determines if the plugin should be active for the given view.
-    Uses scope matching based on allowed selectors.
+    Uses scope matching based on allowed selectors or allow_all_files setting.
     """
     settings = load_settings()
     allow_untitled = settings.get("allow_untitled", True)
-    allowed_selectors = settings.get("allowed_selectors", ["text.plain"])
+    allow_all_files = settings.get("allow_all_files", True)
+    allowed_selectors = settings.get("allowed_selectors", [])
 
     file_name = view.file_name()
     if file_name is None and not allow_untitled:
+        return False
+
+    # If allow_all_files is True, plugin works in all file types
+    if allow_all_files:
+        return True
+
+    # Otherwise, check against allowed selectors
+    if not allowed_selectors:
         return False
 
     for selector in allowed_selectors:
