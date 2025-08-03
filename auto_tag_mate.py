@@ -1,5 +1,6 @@
 import sublime
 import sublime_plugin
+import re
 
 def load_settings():
     """
@@ -41,10 +42,12 @@ class InsertAutoTagCommand(sublime_plugin.TextCommand):
 
         for region in reversed(list(self.view.sel())):
             if region.empty():
-                phrase_region, phrase_text = self.get_phrase_region(region.begin())
-                if phrase_text:
-                    self._wrap_text_with_tags(edit, phrase_region, phrase_text)
+                # Если нет выделения, оборачиваем только последнее слово
+                word_region, word_text = self.get_last_word_region(region.begin())
+                if word_text:
+                    self._wrap_text_with_tags(edit, word_region, word_text)
             else:
+                # Если есть выделение, оборачиваем выделенный текст
                 selected_text = self.view.substr(region)
                 if selected_text.strip():
                     self._wrap_text_with_tags(edit, region, selected_text)
@@ -57,22 +60,43 @@ class InsertAutoTagCommand(sublime_plugin.TextCommand):
         self.view.sel().clear()
         self.view.sel().add(sublime.Region(new_cursor_pos, new_cursor_pos))
 
-    def get_phrase_region(self, point):
-        # Returns a tuple: (region, text)
+    def get_last_word_region(self, point):
+        """
+        Возвращает регион и текст последнего слова в строке до курсора.
+        """
         line_region = self.view.line(point)
         line_start = line_region.begin()
+        
         if point <= line_start:
             return sublime.Region(point, point), ""
-        phrase_region = sublime.Region(line_start, point)
-        phrase_text = self.view.substr(phrase_region).strip()
-        if not phrase_text:
+        
+        # Получаем текст от начала строки до позиции курсора
+        text_to_cursor = self.view.substr(sublime.Region(line_start, point))
+        
+        # Находим все слова в этом тексте
+        words = re.findall(r'\S+', text_to_cursor)
+        
+        if not words:
             return sublime.Region(point, point), ""
-        if " " not in phrase_text:
-            word_region = self.view.word(point)
-            word_text = self.view.substr(word_region)
-            return word_region, word_text
-        else:
-            return phrase_region, phrase_text
+        
+        # Берем последнее слово
+        last_word = words[-1]
+        
+        # Находим позицию последнего слова в строке
+        # Ищем последнее вхождение этого слова в тексте
+        last_word_pattern = re.escape(last_word) + r'(?=\s*$)'
+        match = None
+        for match in re.finditer(last_word_pattern, text_to_cursor):
+            pass  # Берем последнее совпадение
+        
+        if match:
+            word_start = line_start + match.start()
+            word_end = line_start + match.end()
+            word_region = sublime.Region(word_start, word_end)
+            return word_region, last_word
+        
+        # Если по какой-то причине не нашли, возвращаем пустой регион
+        return sublime.Region(point, point), ""
 
 class OpenAutoTagMateSettingsCommand(sublime_plugin.WindowCommand):
     def run(self):
