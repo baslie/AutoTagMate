@@ -1,10 +1,27 @@
 [
     {
+        "caption": "Preferences",
+        "mnemonic": "n",
         "id": "preferences",
-        "children": [
+        "children":
+        [
             {
-                "caption": "AutoTagMate",
-                "command": "open_auto_tag_mate_settings"
+                "caption": "Package Settings",
+                "mnemonic": "P",
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "AutoTagMate",
+                        "children":
+                        [
+                            {
+                                "command": "open_auto_tag_mate_settings",
+                                "caption": "Settings"
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     }
