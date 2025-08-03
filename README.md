@@ -12,8 +12,8 @@ Want to level up your prompts for ChatGPT, Claude AI, or any other neural networ
 - **Universal File Support**  
   Works in ALL file types by default—Python, HTML, Markdown, plain text, code files, and even unsaved documents without extensions.
 
-- **Zero Hassle**  
-  Set a hotkey (default: `Ctrl+\` / `Cmd+\`) to instantly wrap your text in a tag pair.
+- **Manual Control**  
+  Use the hotkey (`Ctrl+\` / `Cmd+\`) to instantly wrap your text in a tag pair exactly when you need it—no automatic tag insertion interruptions.
 
 - **No Configuration Required**  
   Works immediately after installation across all your files and projects.
@@ -31,8 +31,8 @@ While AutoTagMate is ideal for structuring AI prompts, it's still a powerful com
 - **Instant Tag Wrapping**  
   Automatically wraps a selected word or phrase in `<tag></tag>` with a single hotkey press.
 
-- **Auto-insert Closing Tags**  
-  Type an opening tag (e.g., `<Header>`), and the plugin automatically adds the corresponding closing tag.
+- **Manual Operation Only**  
+  Tags are created only when you press the hotkey—no automatic interruptions while typing.
 
 - **Smart Cursor Positioning**  
   After wrapping text, the cursor is placed between the opening and closing tags for seamless editing.
@@ -70,12 +70,12 @@ While AutoTagMate is ideal for structuring AI prompts, it's still a powerful com
 
 1. Type a word or phrase (e.g., `Header` or `Main Content`).
 2. Press the hotkey (`Ctrl+\` / `Cmd+\` by default).
-3. AutoTagMate wraps it: `` or ``.
+3. AutoTagMate wraps it: `<Header></Header>` or `<Main Content></Main Content>`.
 
-### Auto-closing Tags
+### Manual Tag Creation Only
 
-- Start typing an opening tag, like ``.
-- AutoTagMate automatically inserts ``.
+- AutoTagMate operates exclusively via hotkey activation—no automatic tag completion while typing.
+- This ensures full control over when tags are created and prevents interruptions during normal text editing.
 
 ### Works Everywhere
 
@@ -151,8 +151,23 @@ To limit the plugin to only HTML and plain text files:
 
 ## What's New in 1.0.7
 
-- **Hotkey Consistency**: Retained `Ctrl+\` (Windows/Linux) and `Cmd+\` (macOS) for inserting tags without interference from Sublime Text’s built-in functions.
-- **Disabled Auto-complete**: Tag wrapping now only happens via hotkey press, without automatic tag completion.
+- **Hotkey-Only Operation**: Tag creation now occurs exclusively via hotkey activation—no automatic tag completion interruptions
+- **Cleaner Workflow**: Focus on manual control for precise tag placement when you need it
+- **Simplified Codebase**: Streamlined plugin architecture for better performance and reliability
+
+---
+
+## Perfect for Modern Workflows
+
+AutoTagMate is designed for the modern developer and content creator who works across multiple file types and needs quick, reliable text structuring with complete control. Whether you're:
+
+- Crafting detailed AI prompts with clear section markers
+- Quickly adding HTML tags to web content
+- Structuring documentation with custom markup
+- Adding XML-style tags to configuration files
+- Organizing code comments with structured tags
+
+AutoTagMate provides the speed and precision you need across all your projects with full manual control.
 
 ---
 
