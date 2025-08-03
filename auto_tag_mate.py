@@ -134,3 +134,4 @@ class OpenAutoTagMateSettingsCommand(sublime_plugin.WindowCommand):
             "base_file": "${packages}/AutoTagMate/auto_tag_mate.sublime-settings",
             "default": sublime.load_resource("Packages/AutoTagMate/auto_tag_mate.sublime-settings")
         })
+
