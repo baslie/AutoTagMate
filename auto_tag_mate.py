@@ -1,6 +1,5 @@
 import sublime
 import sublime_plugin
-import re
 
 def load_settings():
     """
@@ -75,63 +74,9 @@ class InsertAutoTagCommand(sublime_plugin.TextCommand):
         else:
             return phrase_region, phrase_text
 
-class AutoCloseTagListener(sublime_plugin.EventListener):
-    def on_modified_async(self, view):
-        if not is_valid_view(view):
-            return
-
-        if view.settings().get("auto_close_tag_in_progress", False):
-            return
-
-        for region in view.sel():
-            pos = region.begin()
-            if pos == 0:
-                continue
-            if pos < view.size() and view.substr(sublime.Region(pos, pos + 1)) == "<":
-                continue
-            last_char = view.substr(sublime.Region(pos - 1, pos))
-            if last_char != ">":
-                continue
-
-            line_region = view.line(pos)
-            line_text = view.substr(sublime.Region(line_region.begin(), pos))
-            lt_index = line_text.rfind("<")
-            if lt_index == -1:
-                continue
-
-            tag_candidate = line_text[lt_index:]
-            pattern = r"<([a-zA-Z0-9_\-\s]+)>$"
-            match = re.match(pattern, tag_candidate)
-            if match:
-                tag_name = match.group(1).strip()
-                if not tag_name:
-                    continue
-
-                view.settings().set("auto_close_tag_in_progress", True)
-                sublime.set_timeout(lambda: self.insert_closing_tag(view, pos, tag_name), 0)
-                break
-
-    def insert_closing_tag(self, view, pos, tag_name):
-        try:
-            view.run_command("insert_text", {"position": pos, "text": "</{0}>".format(tag_name)})
-            view.sel().clear()
-            view.sel().add(sublime.Region(pos, pos))
-        except Exception as e:
-            print("AutoTagMate Error in insert_closing_tag:", e)
-        finally:
-            view.settings().set("auto_close_tag_in_progress", False)
-
-class InsertTextCommand(sublime_plugin.TextCommand):
-    def run(self, edit, position, text):
-        try:
-            self.view.insert(edit, position, text)
-        except Exception as e:
-            print("AutoTagMate Error in InsertTextCommand:", e)
-
 class OpenAutoTagMateSettingsCommand(sublime_plugin.WindowCommand):
     def run(self):
         self.window.run_command("edit_settings", {
             "base_file": "${packages}/AutoTagMate/auto_tag_mate.sublime-settings",
             "default": sublime.load_resource("Packages/AutoTagMate/auto_tag_mate.sublime-settings")
         })
-
