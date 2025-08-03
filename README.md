@@ -91,3 +91,77 @@ While AutoTagMate is ideal for structuring AI prompts, it's still a powerful com
 
 AutoTagMate settings are stored in the **auto_tag_mate.sublime-settings** file:
 
+```
+{
+    "allow_all_files": true,
+    "allowed_selectors": [],
+    "allow_untitled": true
+}
+```
+
+
+- **allow_all_files**: If `true` (default), AutoTagMate works in all file types. Set to `false` to use selector-based filtering.
+- **allowed_selectors**: A list of CSS selectors that define specific file types where the plugin is active (only used when `allow_all_files` is `false`).
+- **allow_untitled**: If `true`, AutoTagMate works in unsaved (untitled) files as well.
+
+### Example Custom Configuration
+
+To limit the plugin to only HTML and plain text files:
+
+```
+{
+    "allow_all_files": false,
+    "allowed_selectors": ["text.html", "text.plain"],
+    "allow_untitled": true
+}
+```
+
+
+---
+
+## Hotkeys
+
+### Default Assignment
+
+- **Windows/Linux**: `Ctrl+\`
+- **macOS**: `Cmd+\`
+
+### Changing the Hotkey
+
+1. Open **Preferences → Key Bindings**.
+2. In the user key bindings file (the right-hand side), add:
+
+    ```
+    [
+        {
+            "keys": ["ctrl+shift+t"],
+            "command": "insert_auto_tag"
+        }
+    ]
+    ```
+3. Save the file. Your new key binding will take effect immediately.
+
+---
+
+## Additional Commands
+
+- **Open Plugin Settings**: Use `AutoTagMate: Open Settings` command in the Command Palette to easily access and modify plugin settings.
+
+---
+
+## What's New in 1.0.7
+
+- **Hotkey Consistency**: Retained `Ctrl+\` (Windows/Linux) and `Cmd+\` (macOS) for inserting tags without interference from Sublime Text’s built-in functions.
+- **Disabled Auto-complete**: Tag wrapping now only happens via hotkey press, without automatic tag completion.
+
+---
+
+## Support and Contact
+
+For questions, feature requests, or technical support, please visit [roman-purtow.ru](https://roman-purtow.ru).
+
+---
+
+## License
+
+This project is licensed under the terms specified in the [LICENSE](LICENSE) file.
