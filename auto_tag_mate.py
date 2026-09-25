@@ -40,25 +40,44 @@ class InsertAutoTagCommand(sublime_plugin.TextCommand):
         if not is_valid_view(self.view):
             return
 
+        # Идём с конца документа, чтобы замены не сдвигали ещё не обработанные регионы.
+        # Итоговые курсоры копим в new_regions и выставляем одним разом в конце,
+        # иначе при нескольких курсорах остаётся только один.
+        new_regions = []
         for region in reversed(list(self.view.sel())):
+            target_region, text = None, ""
             if region.empty():
                 # Если нет выделения, оборачиваем только последнее слово
-                word_region, word_text = self.get_last_word_region(region.begin())
-                if word_text:
-                    self._wrap_text_with_tags(edit, word_region, word_text)
+                target_region, text = self.get_last_word_region(region.begin())
             else:
                 # Если есть выделение, оборачиваем выделенный текст
-                selected_text = self.view.substr(region)
-                if selected_text.strip():
-                    self._wrap_text_with_tags(edit, region, selected_text)
+                target_region, text = region, self.view.substr(region)
+
+            if not text.strip():
+                # Оборачивать нечего — оставляем курсор/выделение на месте
+                new_regions.append((region.a, region.b))
+                continue
+
+            new_cursor_pos, delta = self._wrap_text_with_tags(edit, target_region, text)
+            # Уже собранные курсоры стоят дальше по документу и сдвигаются на delta
+            new_regions = [(a + delta, b + delta) for a, b in new_regions]
+            new_regions.append((new_cursor_pos, new_cursor_pos))
+
+        sel = self.view.sel()
+        sel.clear()
+        for a, b in new_regions:
+            sel.add(sublime.Region(a, b))
 
     def _wrap_text_with_tags(self, edit, region, text):
+        """
+        Заменяет region на <text></text> и возвращает позицию курсора внутри тега
+        и на сколько символов изменилась длина буфера.
+        """
         text = text.strip()
         tag_text = "<{0}></{0}>".format(text)
         self.view.replace(edit, region, tag_text)
         new_cursor_pos = region.begin() + len("<{0}>".format(text))
-        self.view.sel().clear()
-        self.view.sel().add(sublime.Region(new_cursor_pos, new_cursor_pos))
+        return new_cursor_pos, len(tag_text) - region.size()
 
     def get_last_word_region(self, point):
         """

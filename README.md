@@ -149,6 +149,12 @@ To limit the plugin to only HTML and plain text files:
 
 ---
 
+## What's New in 1.0.8
+
+- **Multi-Cursor Fix**: With several carets, every wrapped tag now keeps its own caret, so you can keep typing in all of them at once
+
+---
+
 ## What's New in 1.0.7
 
 - **Hotkey-Only Operation**: Tag creation now occurs exclusively via hotkey activation—no automatic tag completion interruptions

@@ -1,0 +1,6 @@
+AutoTagMate 1.0.8
+=================
+
+- Fixed multi-cursor wrapping: with several carets, every wrapped tag now
+  keeps its own caret inside it, so you can keep typing in all of them.
+  Previously only one caret was left. (Issue #1, thanks to @dpc00)
